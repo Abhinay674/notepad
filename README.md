@@ -45,3 +45,39 @@ function ThreeToJpeg() {
 
 export default ThreeToJpeg
 
+
+
+
+
+
+loader.load(
+      'model.gltf',
+      (gltf) => {
+        const canvas = canvasRef.current;
+        const renderer = new CanvasRenderer({ canvas });
+
+        renderer.render(gltf.scene, gltf.camera);
+
+        const dataURL = canvas.toDataURL('image/jpeg');
+        setJpgImageData(dataURL);
+      },
+      (error) => {
+        console.log('Error loading GLTF file:', error);
+      }
+    );
+  }, []);
+
+  if (!jpgImageData) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <img src={jpgImageData} alt="JPG Image" />
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
+    </div>
+  );
+};
+
+export default GltfToJpg;
+
