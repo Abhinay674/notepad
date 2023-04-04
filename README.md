@@ -83,5 +83,10 @@ export default GltfToJpg;
 
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+GLTFLoader.js:3 
+        
+       Uncaught ReferenceError: THREE is not defined
+    at GLTFLoader.js:3:27
+    at GLTFLoader.js:3844:4
 
 
