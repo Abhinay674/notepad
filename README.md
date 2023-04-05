@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import ModelToImage from './ModelToImage';
-import Base64Image from './Base64Image';
-
-const ImageRender = () => {
-  const [base64String, setBase64String] = useState(null);
-
-  useEffect(() => {
-    async function fetchImage() {
-      let imageLink = await ModelToImage('../colorway_BQ7270.glb');
-      let base64String = imageLink['[[PromiseResult]]']; // extract the base64 string from the resolved promise
-      setBase64String(base64String); // update the state with the base64 string
-    }
-
-    fetchImage();
-  }, []); // run the effect only once, on mount
-
-  return (
-    <div>
-      {base64String ? (
-        <Base64Image b64String={base64String} />
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
-};
-
-export default ImageRender;
+{ this.state.allProductsDetails.map(async (prod, index) => {                   
+                            if(prod.productid === 86){
+                                console.log(prod.productid);        
+                                const imageUrl = await convertmodelToImage(prod.fullfilepath);       
+                                console.log('return imagurl ' + imageUrl);  
+                     
+                                 return (
+                                    <>
+                                        <div className='card' key={index} onClick={() => this.cardClick(prod,index)} id={`myBtn3dViewer${index}`}>
+                                            <img src={imageUrl} alt="fake-holder-img" className='card-image' height="200px" width="100%" />
+                                            <div className='card-content'>
+                                                <p>{prod.productCategory}</p>
+                                                <p className='card-text-bold'>{prod.productname}</p>
+                                            </div>
+                                        </div>  
+                                    </>
+                                )
+                            }       
