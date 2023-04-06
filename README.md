@@ -1,20 +1,24 @@
-async renderProducts() {
-  const productCards = await Promise.all(this.state.allProductsDetails.map(async (prod, index) => {
-    const imageUrl = await this.convertmodelToImage(prod.fullfilepath);
-    return (
-      <div className='card' key={index} onClick={() => this.cardClick(prod,index)} id={`myBtn3dViewer${index}`}>
-        <img src={imageUrl} alt="fake-holder-img" className='card-image' height="200px" width="100%" />
-        <div className='card-content'>
-          <p>{prod.productCategory}</p>
-          <p className='card-text-bold'>{prod.productname}</p>
-        </div>
-      </div>
-    );
-  }));
+const products = [
+  { fullfilepath: 'path/to/file1.gltf', prodid: 1 },
+  { fullfilepath: 'path/to/file2.gltf', prodid: 2 },
+  { fullfilepath: 'path/to/file3.gltf', prodid: 3 }
+];
 
-  return (
-    <div className='cards'>
-      {productCards}
-    </div>
-  );
+async function convertToImageUrl(fullfilepath) {
+  // Function to convert fullfilepath to image url
+  // Returns a promise that resolves to the image url string
+  // Example usage: await convertToImageUrl(products[0].fullfilepath)
 }
+
+async function generateProductArray() {
+  const productArray = await Promise.all(products.map(async (product) => {
+    const imageUrl = await convertToImageUrl(product.fullfilepath);
+    return [product.prodid, imageUrl];
+  }));
+  return productArray;
+}
+
+// Example usage
+generateProductArray().then((productArray) => {
+  console.log(productArray);
+});
