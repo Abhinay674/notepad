@@ -1,24 +1,56 @@
-const products = [
-  { fullfilepath: 'path/to/file1.gltf', prodid: 1 },
-  { fullfilepath: 'path/to/file2.gltf', prodid: 2 },
-  { fullfilepath: 'path/to/file3.gltf', prodid: 3 }
-];
+import React, { Component } from 'react';
 
-async function convertToImageUrl(fullfilepath) {
-  // Function to convert fullfilepath to image url
-  // Returns a promise that resolves to the image url string
-  // Example usage: await convertToImageUrl(products[0].fullfilepath)
+class MyComponent extends Component {
+  state = {
+    allproducts: [
+      {
+        fullfilepath: 'example.gltf',
+        prodid: 1
+      },
+      {
+        fullfilepath: 'another_example.gltf',
+        prodid: 2
+      }
+    ]
+  }
+
+  Convert = (gltf) => {
+    // Your implementation of the Convert function goes here
+    // This function should return the data64 string
+  }
+
+  generateProductArray = () => {
+    const { allproducts } = this.state;
+    const productArray = [];
+
+    allproducts.forEach((product) => {
+      const { prodid, fullfilepath } = product;
+      const data64 = this.Convert(fullfilepath);
+
+      productArray.push({
+        [prodid]: data64
+      });
+    });
+
+    return productArray;
+  }
+
+  render() {
+    const productArray = this.generateProductArray();
+
+    // Your component rendering goes here
+
+    return (
+      <div>
+        {productArray.map((product) => (
+          <div key={Object.keys(product)[0]}>
+            <p>{Object.keys(product)[0]}</p>
+            <p>{Object.values(product)[0]}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
-async function generateProductArray() {
-  const productArray = await Promise.all(products.map(async (product) => {
-    const imageUrl = await convertToImageUrl(product.fullfilepath);
-    return [product.prodid, imageUrl];
-  }));
-  return productArray;
-}
-
-// Example usage
-generateProductArray().then((productArray) => {
-  console.log(productArray);
-});
+export default MyComponent;
