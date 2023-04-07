@@ -1,18 +1,12 @@
-import axios from 'axios';
+var express = require('express');
+var app = express();
+const path = require('path');
 
-export var fileExist = async (fileName) => {
-    var gltf = '';
-    await axios.get(`${process.env.REACT_APP_VALIDATOR}/static/` + fileName)
-        .then(resp => {
-            console.log("response", resp)
-            gltf = fileName;
-        })
-        .catch(err => {
-            console.log(err);
-        })
+var cors = require('cors');
+app.use(cors());
 
-    console.log(gltf);
-    return gltf;
-}
+//app.use('/static', express.static('public'));
+app.use('/static', express.static(path.join(__dirname, '/Storage/3DAssets')))
+console.log('started on port 3004')
 
-
+app.listen(3004);
