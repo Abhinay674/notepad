@@ -1,11 +1,8 @@
-ERROR in ./src/components/function.js 9:4-21
-Module not found: Error: Can't resolve 'buffer' in 'C:\Users\abhinay.kumar04\jpg-upload\src\components'
-
-BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
-This is no longer the case. Verify if you need this module and configure a polyfill for it.
-
-If you want to include a polyfill, you need to:
-        - add a fallback 'resolve.fallback: { "buffer": require.resolve("buffer/") }'
-        - install 'buffer'
-If you don't want to include a polyfill, you can use an empty module like this:
-        resolve.fallback: { "buffer": false }
+const buffer = Buffer.from(imageStr, 'base64');
+        const formData = new FormData();
+        formData.append("myFile", buffer, { filename: 'Model.jpg' });
+        console.log(formData); 
+ 
+ 
+ Failed to execute 'append' on 'FormData': parameter 2 is not of type 'Blob'.
+    at FileDump (function.js:52:1)
