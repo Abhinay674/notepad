@@ -1,72 +1,47 @@
-{
-    "nodes" : [
-        {
-            "mesh" : 0,
-            "name" : "BQ7270.002",
-            "rotation" : [
-                1,
-                0,
-                0,
-                0
-            ]
-        },
-        {
-            "name" : "Light.001",
-            "rotation" : [
-                0.16907575726509094,
-                0.7558803558349609,
-                -0.27217137813568115,
-                0.570947527885437
-            ],
-            "translation" : [
-                4.076245307922363,
-                5.903861999511719,
-                -1.0054539442062378
-            ]
-        },
-        {
-            "name" : "Camera.001",
-            "rotation" : [
-                0.483536034822464,
-                0.33687159419059753,
-                -0.20870360732078552,
-                0.7804827094078064
-            ],
-            "translation" : [
-                7.358891487121582,
-                4.958309173583984,
-                6.925790786743164
-            ]
-        },
-        {
-            "name" : "Light",
-            "rotation" : [
-                0.16907575726509094,
-                0.7558803558349609,
-                -0.27217137813568115,
-                0.570947527885437
-            ],
-            "translation" : [
-                4.076245307922363,
-                5.903861999511719,
-                -1.0054539442062378
-            ]
-        },
-        {
-            "name" : "Camera",
-            "rotation" : [
-                0.483536034822464,
-                0.33687159419059753,
-                -0.20870360732078552,
-                0.7804827094078064
-            ],
-            "translation" : [
-                7.358891487121582,
-                4.958309173583984,
-                6.925790786743164
-            ]
-        }
-    ],
+package com.example.demo;
 
-    // other glTF properties...
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@EnableRabbit
+@RestController
+public class DemoApplication {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+
+    @GetMapping("/")
+    public String hello() {
+        return "Hello, World!";
+    }
+
+    @GetMapping("/send")
+    public String send() {
+        String message = "Hello, RabbitMQ!";
+        rabbitTemplate.convertAndSend("myqueue", message);
+        return "Message sent to RabbitMQ: " + message;
+    }
+
+    @RabbitListener(queues = "myqueue")
+    public void receive(String message) {
+        System.out.println("Received message from RabbitMQ: " + message);
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate() {
+        return new RabbitTemplate();
+    }
+
 }
