@@ -33,24 +33,34 @@ bpy.context.view_layer.objects.active = bpy.data.objects[meshname]
 bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
-# Code to apply the guiding curves to the asset
-bpy.ops.object.modifier_add(type='CURVE')
-bpy.context.object.modifiers["Curve"].object = bpy.data.objects["BezierCurve"]
-bpy.ops.object.modifier_add(type='CURVE')
-bpy.context.object.modifiers["Curve"].object = bpy.data.objects["BezierCurve.001"]
-bpy.ops.object.modifier_add(type='CURVE')
-bpy.context.object.modifiers["Curve"].object = bpy.data.objects["BezierCurve.002"]
-bpy.ops.object.modifier_apply(modifier="Curve")
-bpy.ops.object.modifier_apply(modifier="Curve")
-bpy.ops.object.modifier_apply(modifier="Curve")
+# Code to create guiding curves for folding the shirt in three ways
+curve1 = bpy.data.curves.new(name="Curve1", type='CURVE')
+curve1.dimensions = '3D'
+spline1 = curve1.splines.new(type='BEZIER')
+spline1.bezier_points.add(2)
+spline1.bezier_points[0].co = (-1.0, 0.0, 0.0)
+spline1.bezier_points[1].co = (0.0, 0.5, 0.0)
+spline1.bezier_points[2].co = (1.0, 0.0, 0.0)
+curve1_ob = bpy.data.objects.new(name="Curve1", object_data=curve1)
+bpy.context.scene.collection.objects.link(curve1_ob)
 
-# Code to export the gltf file
-objects = bpy.context.scene.objects
-for obj in objects:
-    obj.select_set(obj.type == "CURVE")
-# delete all selected objects
-bpy.ops.object.delete()
+curve2 = bpy.data.curves.new(name="Curve2", type='CURVE')
+curve2.dimensions = '3D'
+spline2 = curve2.splines.new(type='BEZIER')
+spline2.bezier_points.add(2)
+spline2.bezier_points[0].co = (0.0, 1.0, 0.0)
+spline2.bezier_points[1].co = (-0.5, 0.0, 0.0)
+spline2.bezier_points[2].co = (0.0, -1.0, 0.0)
+curve2_ob = bpy.data.objects.new(name="Curve2", object_data=curve2)
+bpy.context.scene.collection.objects.link(curve2_ob)
 
-# Replace the filepath with the location of the exported file
-file_loc2 = file_loc3
-bpy.ops.export_scene.gltf(filepath=file_loc2, export_format='GLTF_EMBEDDED')
+curve3 = bpy.data.curves.new(name="Curve3", type='CURVE')
+curve3.dimensions = '3D'
+spline3 = curve3.splines.new(type='BEZIER')
+spline3.bezier_points.add(2)
+spline3.bezier_points[0].co = (0.0, 1.0, 0.0)
+spline3.bezier_points[1].co = (0.5, 0.0, 0.0)
+spline3.bezier_points[2].co = (0.0, -1.0, 0.0)
+curve3_ob = bpy.data.objects.new(name="Curve3", object_data=curve3)
+bpy.context.scene.collection.objects.link(curve3_ob)
+
