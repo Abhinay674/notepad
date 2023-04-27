@@ -1,10 +1,40 @@
-C:\Program Files\Blender Foundation\Blender 3.4>blender -b D:\blendblendfile\Folding_Template_Shirt_with_sleeve.blend -P D:\blendscript\foldingautomationshirt.txt D:\GLTFVERTICAL\BQ7270_KiksWOL_back-red.gltf
-Blender 3.4.1 (hash 55485cb379f7 built 2022-12-20 01:51:19)
-Read prefs: C:\Users\abhinay.kumar04\AppData\Roaming\Blender Foundation\Blender\3.4\config\userpref.blend
-Read blend: D:\blendblendfile\Folding_Template_Shirt_with_sleeve.blend
-Error: Python: Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "D:\blendscript\foldingautomationshirt.txt", line 31, in <module>
-    folded_mesh.from_pydata(vertices, [], indices)
-NameError: name 'vertices' is not defined
-Error: File format is not supported in file 'D:\GLTFVERTICAL\BQ7270_KiksWOL_back-red.gltf'
+import bpy
+import json
+
+# Set the path to the glTF file to be folded
+gltf_file_path = "D:/GLTFVERTICAL/BQ7270_KiksWOL_back-red.gltf"
+
+# Set the path to the output file
+output_file_path = "D:/GLTFVERTICAL/folded_BQ7270_KiksWOL_back-red.gltf"
+
+# Load the glTF file
+with open(gltf_file_path, 'r') as f:
+    data = json.load(f)
+
+# Extract the t-shirt mesh data
+for mesh in data['meshes']:
+    if mesh['name'] == 'T-Shirt':
+        indices = mesh['primitives'][0]['indices']
+        vertices = mesh['primitives'][0]['attributes']['POSITION']
+        normals = mesh['primitives'][0]['attributes']['NORMAL']
+        texcoords = mesh['primitives'][0]['attributes']['TEXCOORD_0']
+
+# Create a new mesh for the folded t-shirt
+folded_mesh = bpy.data.meshes.new("Folded T-Shirt")
+
+# Create a new object and link it to the scene
+folded_object = bpy.data.objects.new("Folded T-Shirt", folded_mesh)
+bpy.context.scene.collection.objects.link(folded_object)
+
+# Set the folded t-shirt mesh data
+folded_mesh.from_pydata(vertices, [], indices)
+folded_mesh.normals_split_custom_set_from_vertices(normals)
+folded_mesh.uv_layers.new()
+folded_mesh.uv_layers.active.data.foreach_set("uv", texcoords)
+
+# Apply the folding transformation
+# Replace the following code with your own folding algorithm
+folded_object.rotation_euler = (0.0, 0.0, 1.0)
+
+# Export the folded glTF file
+bpy.ops.export_scene.gltf(filepath=output_file_path, export_format="GLTF_SEPARATE")
