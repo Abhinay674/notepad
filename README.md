@@ -1,4 +1,58 @@
+C:\Program Files\Blender Foundation\Blender 3.4>blender -b D:\blendblendfile\Folding_Template_Sleeveless_Shirt.blend -P D:\blendscript\foldingautomationshirt.txt D:\GLTFVERTICAL\BQ7270_KiksWOL_front-black.gltf
+Blender 3.4.1 (hash 55485cb379f7 built 2022-12-20 01:51:19)
+Read prefs: C:\Users\abhinay.kumar04\AppData\Roaming\Blender Foundation\Blender\3.4\config\userpref.blend
+Read blend: D:\blendblendfile\Folding_Template_Sleeveless_Shirt.blend
+Prachi args ['blender', '-b', 'D:\\blendblendfile\\Folding_Template_Sleeveless_Shirt.blend', '-P', 'D:\\blendscript\\foldingautomationshirt.txt', 'D:\\GLTFVERTICAL\\BQ7270_KiksWOL_front-black.gltf']
+fileName from Folding Input GLTF D:\GLTFVERTICAL\BQ7270_KiksWOL_front-black.gltf
+Location: D:\GLTFVERTICAL\BQ7270_KiksWOL_front-black.gltf
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.10s
+Error: Python: Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\blendscript\foldingautomationshirt.txt", line 73, in <module>
+    bpy.data.objects[foldnew_file_name].select_set(True)
+KeyError: 'bpy_prop_collection[key]: key "D:\\GLTFVERTICAL\\BQ7270_KiksWOL_front-black.gltf" not found'
+Error: File format is not supported in file 'D:\GLTFVERTICAL\BQ7270_KiksWOL_front-black.gltf'
+
+Blender quit
+
+
+
+
+import sys
 import bpy
+from bpy_extras.io_utils import ImportHelper
+from bpy.types import Operator
+from bpy.props import StringProperty
+
+argv = sys.argv
+print("Prachi args",argv)
+
+foldnew_file_name=argv[5]
+
+print("fileName from Folding Input GLTF", foldnew_file_name)
+
+meshname = ''
+
+file_loc = foldnew_file_name
+print("Location:", file_loc)
+
+file_loc3 = foldnew_file_name[0:-5]+'_folding'
+
+# Replace the filepath with the filepath of the asset stored in the server
+bpy.ops.import_scene.gltf(filepath=file_loc)
+
+# Code to select the imported asset (Imported glTF file won't be selected automatically in Blender)
+for ob in bpy.data.objects:
+    if ob.type == "MESH":
+        meshname = ob.name
+
+bpy.data.objects[meshname].select_set(True)
+bpy.context.view_layer.objects.active = bpy.data.objects[meshname]
+
+# Code to scale down the asset to required dimensions
+bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
 # Create curve 1
 curve1 = bpy.data.curves.new(name="Curve1", type='CURVE')
@@ -37,7 +91,7 @@ bpy.context.scene.collection.objects.link(curve3_ob)
 
 # Select the object to be folded
 bpy.ops.object.select_all(action='DESELECT')
-bpy.data.objects['name_of_object_to_be_folded'].select_set(True)
+bpy.data.objects[foldnew_file_name].select_set(True)
 
 # Apply the modifiers to fold the object along the curves
 bpy.ops.object.modifier_add(type='CURVE')
