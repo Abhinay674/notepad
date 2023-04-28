@@ -50,21 +50,17 @@ bpy.ops.object.mode_set(mode='EDIT')
 bpy.ops.mesh.select_all(action='DESELECT')
 bpy.ops.mesh.select_vertex_group(group_select_mode='ALL', type='NONE', extend=False)
 bpy.ops.transform.rotate(value=1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (-1, 0, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-bpy.ops.mesh.select_all(action='DESELECT')
 
 # Code to fold the shirt right to left
-bpy.ops.object.mode_set(mode='EDIT')
 bpy.ops.mesh.select_all(action='DESELECT')
 bpy.ops.mesh.select_vertex_group(group_select_mode='ALL', type='NONE', extend=False)
 bpy.ops.transform.rotate(value=-1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (1, 0, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-bpy.ops.mesh.select_all(action='DESELECT')
 
 # Code to fold the shirt bottom to top
-bpy.ops.object.mode_set(mode='EDIT')
-bpy.ops.mesh.select_all(action='SELECT')
-bpy.ops.transform.rotate(value=3.14159, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, -1, 0), (0, 0, -1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-bpy.ops.transform.translate(value=(0, 0, -1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 0, -1), (0, 1, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 bpy.ops.mesh.select_all(action='DESELECT')
+bpy.ops.mesh.select_vertex_group(group_select_mode='ALL', type='NONE', extend=False)
+bpy.ops.transform.rotate(value=1.5708, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 0, -1), (0, 1, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+bpy.ops.transform.translate(value=(0, 0, -1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
 # Code to export the gltf file with the folded shirt
 file_loc4 = foldnew_file_name[0:-5]+'_folded'
