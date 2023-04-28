@@ -7,7 +7,7 @@ from bpy.props import StringProperty
 argv = sys.argv
 print("Prachi args",argv)
 
-foldnew_file_name=argv[5]
+foldnew_file_name = argv[5]
 
 print("fileName from Folding Input GLTF", foldnew_file_name)
 
@@ -43,6 +43,27 @@ bpy.context.object.modifiers["Curve"].object = bpy.data.objects["BezierCurve.002
 bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
+
+# Code to fold the left side of the shirt
+bpy.ops.object.modifier_add(type='SIMPLE_DEFORM')
+bpy.context.object.modifiers["SimpleDeform"].deform_method = 'BEND'
+bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Z'
+bpy.context.object.modifiers["SimpleDeform"].factor = 1.5
+bpy.context.object.modifiers["SimpleDeform"].limits[0][0] = 0
+
+# Code to fold the right side of the shirt
+bpy.ops.object.modifier_add(type='SIMPLE_DEFORM')
+bpy.context.object.modifiers["SimpleDeform"].deform_method = 'BEND'
+bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Z'
+bpy.context.object.modifiers["SimpleDeform"].factor = -1.5
+bpy.context.object.modifiers["SimpleDeform"].limits[0][0] = 0
+
+# Code to fold the bottom of the shirt
+bpy.ops.object.modifier_add(type='SIMPLE_DEFORM')
+bpy.context.object.modifiers["SimpleDeform"].deform_method = 'BEND'
+bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'X'
+bpy.context.object.modifiers["SimpleDeform"].factor = -1.5
+bpy.context.object.modifiers["SimpleDeform"].limits[0][0] = 0
 
 # Code to export the gltf file
 objects = bpy.context.scene.objects
