@@ -44,32 +44,11 @@ bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 
-# Code to fold left of the shirt
-bpy.ops.object.mode_set(mode='EDIT')
-bpy.ops.mesh.select_all(action='DESELECT')
-bpy.ops.mesh.select_mode(type="EDGE")
-bpy.ops.mesh.select_loose()
-bpy.ops.mesh.select_non_manifold()
-bpy.ops.transform.translate(value=(-0.05, 0, 0), constraint_axis=(True, False, False), orient_type='GLOBAL')
-
-# Code to fold right of the shirt
-bpy.ops.mesh.select_all(action='DESELECT')
-bpy.ops.mesh.select_mode(type="EDGE")
-bpy.ops.mesh.select_loose()
-bpy.ops.mesh.select_non_manifold()
-bpy.ops.transform.translate(value=(0.05, 0, 0), constraint_axis=(True, False, False), orient_type='GLOBAL')
-
-# Code to fold bottom of the shirt
-bpy.ops.mesh.select_all(action='DESELECT')
-bpy.ops.mesh.select_mode(type="VERT")
-bpy.ops.mesh.select_pattern(pattern="*001", case_sensitive=False)
-bpy.ops.transform.rotate(value=-0.523599, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
 # Code to export the gltf file
 objects = bpy.context.scene.objects
 for obj in objects:
-obj.select_set(obj.type == "CURVE" or obj.type == "MESH")
-
+    obj.select_set(obj.type == "CURVE")
 # delete all selected objects
 bpy.ops.object.delete()
 
