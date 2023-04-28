@@ -5,9 +5,9 @@ from bpy.types import Operator
 from bpy.props import StringProperty
 
 argv = sys.argv
-print("Prachi args",argv)
+print("Prachi args", argv)
 
-foldnew_file_name=argv[5]
+foldnew_file_name = argv[5]
 
 print("fileName from Folding Input GLTF", foldnew_file_name)
 
@@ -16,7 +16,7 @@ meshname = ''
 file_loc = foldnew_file_name
 print("Location:", file_loc)
 
-file_loc3 = foldnew_file_name[0:-5]+'_folding'
+file_loc3 = foldnew_file_name[0:-5] + '_folding'
 
 # Replace the filepath with the filepath of the asset stored in the server
 bpy.ops.import_scene.gltf(filepath=file_loc)
@@ -44,14 +44,19 @@ bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 
+# Code to fold the shirt
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action='SELECT')
+bpy.ops.mesh.subdivide(number_cuts=2)
+bpy.ops.mesh.select_all(action='DESELECT')
+bpy.ops.mesh.select_face_by_sides(number=4, type='GREATER')
+bpy.ops.transform.rotate(value=-1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (-1, 0, 0)), orient_matrix_type='GLOBAL')
+bpy.ops.mesh.select_all(action='DESELECT')
+bpy.ops.mesh.select_face_by_sides(number=4, type='GREATER')
+bpy.ops.transform.rotate(value=-1.5708, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 0, 1), (0, -1, 0)), orient_matrix_type='GLOBAL')
+bpy.ops.mesh.select_all(action='DESELECT')
+bpy.ops.mesh.select_face_by_sides(number=4, type='GREATER')
+bpy.ops.transform.rotate(value=1.5708, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 0, 1), (0, -1, 0)), orient_matrix_type='GLOBAL')
+bpy.ops.object.mode_set(mode='OBJECT')
+bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS', center='MEDIAN')
 
-# Code to export the gltf file
-objects = bpy.context.scene.objects
-for obj in objects:
-    obj.select_set(obj.type == "CURVE")
-# delete all selected objects
-bpy.ops.object.delete()
-
-# Replace the filepath with the location of the exported file
-file_loc2 = file_loc3
-bpy.ops.export_scene.gltf(filepath=file_loc2, export_format='GLTF_EMBEDDED')
