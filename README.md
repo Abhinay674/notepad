@@ -26,13 +26,12 @@ for ob in bpy.data.objects:
     if ob.type == "MESH":
         meshname = ob.name
 
-imported_object = bpy.data.objects[meshname]
-imported_object.select_set(True)
-bpy.context.view_layer.objects.active = imported_object
+bpy.data.objects[meshname].select_set(True)
+bpy.context.view_layer.objects.active = bpy.data.objects[meshname]
 
 # Code to scale down the asset to required dimensions
 bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
 # Code to apply the guiding curves to the asset
 bpy.ops.object.modifier_add(type='CURVE')
@@ -45,23 +44,13 @@ bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 bpy.ops.object.modifier_apply(modifier="Curve")
 
-# Code to fold the shirt left to right
-bpy.ops.object.mode_set(mode='EDIT')
-bpy.ops.mesh.select_all(action='DESELECT')
-bpy.ops.mesh.select_vertex_group(group_select_mode='ALL', type='NONE', extend=False)
-bpy.ops.transform.rotate(value=1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (-1, 0, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+# Code to export the gltf file
+objects = bpy.context.scene.objects
+for obj in objects:
+    obj.select_set(obj.type == "CURVE")
+# delete all selected objects
+bpy.ops.object.delete()
 
-# Code to fold the shirt right to left
-bpy.ops.mesh.select_all(action='DESELECT')
-bpy.ops.mesh.select_vertex_group(group_select_mode='ALL', type='NONE', extend=False)
-bpy.ops.transform.rotate(value=-1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (1, 0, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-
-# Code to fold the shirt bottom to top
-bpy.ops.mesh.select_all(action='DESELECT')
-bpy.ops.mesh.select_vertex_group(group_select_mode='ALL', type='NONE', extend=False)
-bpy.ops.transform.rotate(value=1.5708, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 0, -1), (0, 1, 0)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-bpy.ops.transform.translate(value=(0, 0, -1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-
-# Code to export the gltf file with the folded shirt
-file_loc4 = foldnew_file_name[0:-5]+'_folded'
-bpy.ops.export_scene.gltf(filepath=file_loc4, export_format='GLTF_EMBEDDED')
+# Replace the filepath with the location of the exported file
+file_loc2 = file_loc3
+bpy.ops.export_scene.gltf(filepath=file_loc2, export_format='GLTF_EMBEDDED')
