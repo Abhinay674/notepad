@@ -10,10 +10,7 @@ obj.select_set(True)
 
 # Apply a scale transformation to the object
 bpy.ops.transform.resize(value=(0.01, 0.01, 0.01))
-
-# Set the pivot point for the rotation to be the bottom center of the object
-bpy.context.scene.tool_settings.transform_pivot_point = 'ACTIVE_ELEMENT'
-bpy.context.scene.cursor.location = obj.matrix_world @ obj.data.vertices[0].co
+bpy.ops.transform.resize(value=(1, 1, 0.1), constraint_axis=(False, False, True))
 
 # Create a keyframe animation for the folding
 frame_start = 0
@@ -24,21 +21,19 @@ frame_step = 1
 obj.rotation_euler = (0, 0, 0)
 obj.keyframe_insert(data_path='rotation_euler', frame=frame_start)
 
-# Create a keyframe for the left side fold
-obj.rotation_euler = (-1.57, 0, 0)
-obj.keyframe_insert(data_path='rotation_euler', frame=frame_end/4)
-
-# Create a keyframe for the right side fold
-obj.rotation_euler = (-1.57, 0, -3.14)
-obj.keyframe_insert(data_path='rotation_euler', frame=frame_end/2)
-
-# Create a keyframe for the bottom fold
-obj.rotation_euler = (-3.14, 0, -3.14)
-obj.keyframe_insert(data_path='rotation_euler', frame=frame_end*3/4)
-
 # Create a keyframe for the final pose
-obj.rotation_euler = (-3.14, 0, 0)
+obj.rotation_euler = (-1.57, 0, 0)
 obj.keyframe_insert(data_path='rotation_euler', frame=frame_end)
+
+# Create keyframes for the intermediate poses
+for frame in range(frame_start + frame_step, frame_end, frame_step):
+    if frame <= 10:
+        obj.rotation_euler = (-1.57 * (frame / 10), 0, 0)
+    elif frame <= 20:
+        obj.rotation_euler = (-1.57, 0, -1.57 * ((frame - 10) / 10))
+    else:
+        obj.rotation_euler = (-1.57, -1.57 * ((frame - 20) / 10), -1.57)
+    obj.keyframe_insert(data_path='rotation_euler', frame=frame)
 
 # Export the folded object as a new glTF file
 bpy.ops.export_scene.gltf(filepath='path/to/your/folded/file.gltf')
