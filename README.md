@@ -20,7 +20,7 @@ file_loc =foldnew_file_name
 print("locationnnnnnnnnn",file_loc)
 
 file_loc3 = foldnew_file_name[0:-5]+'_folding'
-#file_loc3 = foldnew_file_name[0: 5]+'_folding'
+
 
 #Replace the filepath with the filepath of the asset stored in the server
 bpy.ops.import_scene.gltf(filepath=file_loc)
@@ -36,9 +36,9 @@ bpy.data.objects[meshname].select_set(True)
 bpy.context.view_layer.objects.active = bpy.data.objects[meshname]
 
 #Code to scale down the asset to required dimensions
+
 bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-
 
 #Code to apply the guiding curves to the asset
 
