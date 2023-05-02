@@ -30,8 +30,8 @@ bpy.data.objects[meshname].select_set(True)
 bpy.context.view_layer.objects.active = bpy.data.objects[meshname]
 
 # Code to scale down the asset to required dimensions
-bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 1, 0), (0, 1, 0), (1, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (0, 1, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
 # Code to apply the guiding curves to the asset
 bpy.ops.object.modifier_add(type='CURVE')
@@ -50,13 +50,13 @@ bpy.ops.mesh.select_all(action='SELECT')
 bpy.ops.mesh.subdivide(number_cuts=2)
 bpy.ops.mesh.select_all(action='DESELECT')
 bpy.ops.mesh.select_face_by_sides(number=4, type='GREATER')
-bpy.ops.transform.rotate(value=1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, -1), (0, 1, 0), (-1, 0, 0)), orient_matrix_type='GLOBAL')
+bpy.ops.transform.rotate(value=1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((1, 0, -1), (0, 1, -1), (0, 1, 0)), orient_matrix_type='GLOBAL')
 bpy.ops.mesh.select_all(action='DESELECT')
 bpy.ops.mesh.select_face_by_sides(number=4, type='GREATER')
-bpy.ops.transform.rotate(value=-1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (0, 1, 0), (-1, 0, 0)), orient_matrix_type='GLOBAL')
+bpy.ops.transform.rotate(value=-1.5708, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((0, 0, 1), (-1, 1, 0), (-1, 0, 1)), orient_matrix_type='GLOBAL')
 bpy.ops.mesh.select_all(action='DESELECT')
 bpy.ops.mesh.select_face_by_sides(number=4, type='GREATER')
-bpy.ops.transform.rotate(value=-1.5708, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 0, 1), (0, 1, 0)), orient_matrix_type='GLOBAL')
+bpy.ops.transform.rotate(value=-1.5708, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, -1)), orient_matrix_type='GLOBAL')
 bpy.ops.object.mode_set(mode='OBJECT')
 bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS', center='MEDIAN')
 
