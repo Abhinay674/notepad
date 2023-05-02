@@ -21,14 +21,21 @@ frame_step = 1
 obj.rotation_euler = (0, 0, 0)
 obj.keyframe_insert(data_path='rotation_euler', frame=frame_start)
 
+# Create a keyframe for the left fold
+obj.rotation_euler = (0, -1.57, 0)
+obj.keyframe_insert(data_path='rotation_euler', frame=frame_end / 4)
+
+# Create a keyframe for the right fold
+obj.rotation_euler = (0, 1.57, 0)
+obj.keyframe_insert(data_path='rotation_euler', frame=frame_end / 2)
+
+# Create a keyframe for the bottom fold
+obj.rotation_euler = (-1.57, 0, 0)
+obj.keyframe_insert(data_path='rotation_euler', frame=frame_end * 3 / 4)
+
 # Create a keyframe for the final pose
 obj.rotation_euler = (-1.57, 0, 0)
 obj.keyframe_insert(data_path='rotation_euler', frame=frame_end)
-
-# Create keyframes for the intermediate poses
-for frame in range(frame_start + frame_step, frame_end, frame_step):
-    obj.rotation_euler = (-1.57 * (frame / frame_end), 0, 0)
-    obj.keyframe_insert(data_path='rotation_euler', frame=frame)
 
 # Export the folded object as a new glTF file
 bpy.ops.export_scene.gltf(filepath='path/to/your/folded/file.gltf')
