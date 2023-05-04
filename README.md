@@ -1,2 +1,6 @@
-bpy.ops.import_scene.gltf(filepath=new_shirt_path, import_mode='APPEND')
-shirt_obj = bpy.data.objects["Object001_Object001_mtl_0"]
+key not found
+Error: Python: Traceback (most recent call last):
+  File "\Text", line 15, in <module>
+  File "C:\Program Files\Blender Foundation\Blender 3.4\3.4\scripts\modules\bpy\ops.py", line 113, in __call__
+    ret = _op_call(self.idname_py(), None, kw)
+TypeError: Converting py args to operator properties: : keyword "import_mode" unrecognized
