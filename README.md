@@ -1,25 +1,39 @@
 import bpy
 
-# Replace the path with the path to your new glTF file
-new_shirt_path = "/path/to/your/new/shirt.gltf"
-
-# Import the new shirt
-bpy.ops.import_scene.gltf(filepath=new_shirt_path)
-
-# Get a reference to the new shirt object
-new_shirt = bpy.context.selected_objects[0]
-
-# Get a reference to the hanger object
-hanger = bpy.data.objects["hanger"]
-
-# Set the new shirt as a child of the hanger
-new_shirt.parent = hanger
-
-# Position the new shirt on the hanger
-new_shirt.location = (0.0, 0.0, 0.0)
-new_shirt.rotation_euler = (0.0, 0.0, 0.0)
-new_shirt.scale = (1.0, 1.0, 1.0)
-
-# Remove the old shirt object
-old_shirt = bpy.data.objects["shirt"]
-bpy.data.objects.remove(old_shirt, do_unlink=True)
+bpy.context.space_data.system_folders_active = 0
+bpy.context.space_data.system_folders_active = 1
+bpy.ops.import_scene.gltf(filepath="D:\\GLTFVERTICAL\\BQ7270_KiksWOL_front-black.gltf", files=[{"name":"BQ7270_KiksWOL_front-black.gltf", "name":"BQ7270_KiksWOL_front-black.gltf"}], loglevel=50)
+bpy.ops.object.delete(use_global=False, confirm=False)
+Deleted 5 object(s)
+bpy.context.space_data.system_bookmarks_active = 3
+bpy.ops.import_scene.gltf(filepath="C:\\Users\\abhinay.kumar04\\Downloads\\casual_shirt.gltf", files=[{"name":"casual_shirt.gltf", "name":"casual_shirt.gltf"}], loglevel=50)
+bpy.ops.transform.translate(value=(0, 0, 2.04376), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.resize(value=(0.887978, 0.887978, 0.887978), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(0, 0.428799, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, True, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(0, 0, 0.130189), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.outliner.delete()
+bpy.ops.import_scene.gltf(filepath="C:\\Users\\abhinay.kumar04\\Downloads\\standard_t-shirt.gltf", files=[{"name":"standard_t-shirt.gltf", "name":"standard_t-shirt.gltf"}], loglevel=50)
+bpy.ops.outliner.item_activate(deselect_all=True)
+bpy.ops.outliner.item_rename()
+bpy.ops.object.delete(use_global=False, confirm=False)
+Deleted 1 object(s)
+bpy.ops.outliner.item_activate(deselect_all=True)
+bpy.ops.outliner.delete()
+bpy.ops.import_scene.gltf(filepath="C:\\Users\\abhinay.kumar04\\Downloads\\standard_t-shirt.gltf", files=[{"name":"standard_t-shirt.gltf", "name":"standard_t-shirt.gltf"}], loglevel=50)
+bpy.ops.object.delete(use_global=False, confirm=False)
+Deleted 17 object(s)
+bpy.ops.import_scene.gltf(filepath="C:\\Users\\abhinay.kumar04\\Downloads\\football_shirt_fc_barcelona.gltf", files=[{"name":"football_shirt_fc_barcelona.gltf", "name":"football_shirt_fc_barcelona.gltf"}], loglevel=50)
+bpy.ops.transform.resize(value=(4.04352, 4.04352, 4.04352), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(1.66337, 0, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.object.delete(use_global=False, confirm=False)
+Deleted 17 object(s)
+bpy.ops.import_scene.gltf(filepath="C:\\Users\\abhinay.kumar04\\Downloads\\football_shirt_fc_barcelona.gltf", files=[{"name":"football_shirt_fc_barcelona.gltf", "name":"football_shirt_fc_barcelona.gltf"}], loglevel=50)
+bpy.ops.transform.resize(value=(4.04352, 4.04352, 4.04352), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(1.66337, 0, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.rotate(value=0.0483874, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.rigidbody.world_add()
+bpy.ops.outliner.item_activate(deselect_all=True)
+bpy.ops.transform.rotate(value=-0.365737, orient_axis='Z', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(-0, -0, -1.091), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(0, 4.04958, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, True, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(-0.781987, -0, -0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
