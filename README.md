@@ -1,22 +1,21 @@
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.22s
+Error: Python: Traceback (most recent call last):
+  File "\Text", line 2, in <module>
+AttributeError: 'SpaceTextEditor' object has no attribute 'system_bookmarks_active'
+
+
+
 import bpy
-
-# Step 1: Delete existing shirt object
-existing_shirt_name = "Object001_Object001_mtl_0"
-if existing_shirt_name in bpy.data.objects:
-    bpy.data.objects[existing_shirt_name].select_set(True)
-    bpy.ops.object.delete(use_global=False)
-
-# Step 2: Import new shirt
-new_shirt_path = "D:/GLTFVERTICAL/ShirtY.gltf"
-bpy.ops.import_scene.gltf(filepath=new_shirt_path)
-
-# Step 3: Rename new shirt object and transform it
-new_shirt_obj = bpy.context.selected_objects[0]
-new_shirt_obj.name = existing_shirt_name
-new_shirt_obj.scale *= 3.30587
-new_shirt_obj.location.y -= 4.75175
-new_shirt_obj.rotation_euler.z -= 0.424993
-
-# Step 4: Export hanger with new shirt
-export_path = "D:/GLTFVERTICAL/ShirtY_hanger.gltf"
-bpy.ops.export_scene.gltf(filepath=export_path)
+bpy.context.space_data.system_bookmarks_active = 3
+bpy.ops.import_scene.gltf(filepath="D:\GLTFVERTICAL\ShirtY.gltf", files=[{"name":"ShirtY.gltf", "name":"ShirtY.gltf"}], loglevel=50)
+bpy.ops.transform.resize(value=(3.30587, 3.30587, 3.30587), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.resize(value=(3.30587, 3.30587, 3.30587), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(-0, -4.75175, -0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, True, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.rotate(value=-0.247629, orient_axis='Z', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.rotate(value=-0.176364, orient_axis='Z', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(0.371786, 0, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(0, 2.3717, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, True, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.ops.transform.translate(value=(0.120432, 0, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
+bpy.context.space_data.system_bookmarks_active = 1
+bpy.context.space_data.params.filename = "ShirtY_hanger.gltf"
