@@ -7,7 +7,7 @@ AttributeError: 'SpaceTextEditor' object has no attribute 'system_bookmarks_acti
 
 
 import bpy
-bpy.context.space_data.system_bookmarks_active = 3
+#bpy.context.space_data.system_bookmarks_active = 3
 bpy.ops.import_scene.gltf(filepath="D:\GLTFVERTICAL\ShirtY.gltf", files=[{"name":"ShirtY.gltf", "name":"ShirtY.gltf"}], loglevel=50)
 bpy.ops.transform.resize(value=(3.30587, 3.30587, 3.30587), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
 bpy.ops.transform.resize(value=(3.30587, 3.30587, 3.30587), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
@@ -17,5 +17,7 @@ bpy.ops.transform.rotate(value=-0.176364, orient_axis='Z', orient_type='GLOBAL',
 bpy.ops.transform.translate(value=(0.371786, 0, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
 bpy.ops.transform.translate(value=(0, 2.3717, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, True, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
 bpy.ops.transform.translate(value=(0.120432, 0, 0), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, snap=False, snap_elements={'INCREMENT'}, use_snap_project=False, snap_target='CLOSEST', use_snap_self=True, use_snap_edit=True, use_snap_nonedit=True, use_snap_selectable=False)
-bpy.context.space_data.system_bookmarks_active = 1
-bpy.context.space_data.params.filename = "ShirtY_hanger.gltf"
+#bpy.context.space_data.system_bookmarks_active = 1
+#bpy.context.space_data.params.filename = "ShirtY_hanger.gltf"
+
+bpy.ops.export_scene.gltf()
