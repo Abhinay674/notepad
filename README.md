@@ -1,27 +1,37 @@
-import bpy
-from mathutils import Matrix, Vector
+If your script doesn't contain object names for the shirt and hanger, it might be challenging to attach different shirts automatically. In that case, you'll need to modify your script to handle different shirt objects dynamically. Here's a general outline of the steps you can take:
 
-# Load the .blend hanger file
-bpy.ops.wm.open_mainfile(filepath='path/to/hanger_file.blend')
+1. Import the necessary modules:
+   ```python
+   import bpy
+   import mathutils
+   ```
 
-# Import the new shirt
-bpy.ops.import_scene.gltf(filepath='path/to/new_shirt.glb')
+2. Define the transformation parameters for attaching the shirt:
+   ```python
+   # Define the translation, rotation, and scale values
+   translation = mathutils.Vector((x, y, z))
+   rotation_euler = mathutils.Euler((rx, ry, rz), 'XYZ')
+   scale = mathutils.Vector((sx, sy, sz))
+   ```
 
-# Get the objects for the hanger and the new shirt
-hanger = bpy.data.objects['hanger']
-new_shirt = bpy.data.objects['new_shirt']
+3. Iterate through each shirt object and apply the transformations:
+   ```python
+   # Iterate through each selected object
+   for obj in bpy.context.selected_objects:
+       # Apply the transformations to the object
+       obj.location += translation
+       obj.rotation_euler.rotate(rotation_euler)
+       obj.scale *= scale
+   ```
 
-# Determine the positions and orientations of the parts of the hanger that will be in contact with the shirt
-hook_location = Vector((0, 0, 0))  # Example: the hook's origin is at the center of the hanger
-hook_normal = Vector((0, 0, 1))  # Example: the hook extends upwards from the hanger
+In this code snippet, you'll need to replace `x`, `y`, `z`, `rx`, `ry`, `rz`, `sx`, `sy`, and `sz` with the appropriate translation, rotation, and scale values you recorded in the info window for attaching the shirt.
 
-# Calculate the necessary position and rotation adjustments to fit the new shirt onto the hanger
-hook_to_shirt_translation = hook_location - new_shirt.bound_box[0]
-hook_to_shirt_rotation = hook_normal.rotation_difference(new_shirt.matrix_world.to_quaternion().@)
-shirt_transform = Matrix.Translation(hook_to_shirt_translation) @ hook_to_shirt_rotation.to_matrix().to_4x4()
+To use this modified script with different shirts, follow these steps:
 
-# Apply the position and rotation adjustments to the new shirt
-new_shirt.matrix_world = shirt_transform @ new_shirt.matrix_world
+1. Open your Blender file and make sure the hanger and the shirt you want to attach are present in the scene.
 
-# Export the hanger with the attached shirt to a new .glb file
-bpy.ops.export_scene.gltf(filepath='path/to/hanger_with_attached_shirt.glb', export_selected=True)
+2. Select the shirt object you want to attach.
+
+3. Run the modified script. It will iterate through the selected objects and apply the recorded transformations to each one.
+
+By using this modified script, you should be able to attach different shirts to the hanger based on the recorded transformation parameters.
