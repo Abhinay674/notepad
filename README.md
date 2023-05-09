@@ -1,7 +1,16 @@
+import bpy
+
+blender_file = 'D:\IXRVP\Folding_Template-Hanging.blend'
+gltf_file = 'D:\GLTFVERTICAL\ShirtY.gltf'
+
+
+# Set the name of the collection where the appended objects will be placed
+target_collection_name = "MyTargetCollection"
+
 # Append the objects from the .blend file
 with bpy.data.libraries.load(blender_file) as (data_from, data_to):
     for obj_name in data_from.objects:
-        if obj_name.startswith("hanger"):
+        if obj_name.startswith("ZZZZZZZZZZZ"):
             data_to.objects.append(obj_name)
 
 # Create a new collection or use an existing one to hold the appended objects
@@ -19,3 +28,7 @@ for obj_name in data_to.objects:
             obj.users_collection[0].objects.unlink(obj)
 
         target_collection.objects.link(obj)
+
+**Error: Python: Traceback (most recent call last):
+  File "\Text", line 24, in <module>
+TypeError: list indices must be integers or slices, not Object**
