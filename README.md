@@ -1,3 +1,6 @@
+Certainly! Here's an example Python script that uses the Blender Python API to attach a shirt (in .gltf format) to a hanger (in .blend format):
+
+```python
 import bpy
 import sys
 
@@ -38,3 +41,15 @@ shirt.select_set(True)
 
 # Export the selected shirt object as GLTF
 bpy.ops.export_scene.gltf(filepath=output_gltf_file, export_selected=True)
+
+```
+
+To use this script, save it as a separate Python file (e.g., `attach_shirt.py`). Then, modify your command to include the path to this Python script:
+
+```
+blender -b your_blender_file.blend -P attach_shirt.py your_gltf_file.gltf
+```
+
+Make sure to replace `your_blender_file.blend` with the path to your Blender file, and `your_gltf_file.gltf` with the path to your shirt file.
+
+This script assumes that the hanger object in your Blender file is named "hanger" and the shirt object imported from the .gltf file is named "shirt". Modify these object names in the script if they are different in your Blender file.
