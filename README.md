@@ -29,3 +29,12 @@ bpy.ops.wm.save_mainfile(filepath=blender_file)
 
 # Execute the Python script
 exec(compile(open(script_file).read(), script_file, 'exec'))
+
+# Set the output path for the exported GLTF file
+output_gltf_file = "output.gltf"  # Replace with your desired output file path
+
+# Select the shirt object
+shirt.select_set(True)
+
+# Export the selected shirt object as GLTF
+bpy.ops.export_scene.gltf(filepath=output_gltf_file, export_selected=True)
