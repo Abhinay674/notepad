@@ -16,10 +16,13 @@ hanger = bpy.data.objects.get("hanger")
 shirt = bpy.data.objects.get("shirt")
 
 if hanger is not None and shirt is not None:
-    # Set the shirt's scale, rotation, and position
-    shirt.scale = hanger.scale  # Match the scale of the hanger
-    shirt.rotation_euler = hanger.rotation_euler  # Match the rotation of the hanger
-    shirt.location = hanger.location  # Match the position of the hanger
+    # Get the hanger's position and scale
+    hanger_location = hanger.location.copy()
+    hanger_scale = hanger.scale.copy()
+
+    # Set the shirt's position and scale to match the hanger
+    shirt.location = hanger_location
+    shirt.scale = hanger_scale
 
     # Parent the shirt to the hanger
     shirt.parent = hanger
