@@ -1,3 +1,4 @@
+
 Error: Python: Traceback (most recent call last):
-  File "\Text", line 24, in <module>
-TypeError: bpy_prop_collection[key]: invalid key, must be a string or an int, not Object
+  File "\Text", line 23, in <module>
+AttributeError: 'list' object has no attribute 'values'
