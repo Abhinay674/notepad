@@ -48,6 +48,8 @@ for obj in data_to.objects:
     else:
         print("Shirt object not found")
     
+    shirt.rotation_mode = 'XYZ'
+    
     shirt.location = hanger_location
     shirt.scale = hanger_scale
     shirt.rotation_euler = hanger_rotation_rad
