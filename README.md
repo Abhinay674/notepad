@@ -31,7 +31,7 @@ for obj in data_to.objects:
 
         target_collection.objects.link(obj)
 
-bpy.ops.import_scene.gltf(filepath=gltf_file)
+bpy.ops.import_scene.gltf(filepath=gltf_file, directory="")  # Specify the filepath directly
 
 hanger = bpy.data.objects["ZZZZZZZZZZZ"]
 hanger_location = hanger.location.copy()
