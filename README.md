@@ -61,6 +61,14 @@ for obj in data_to.objects:
     print('shirt',shirt.location,shirt.scale,shirt.rotation_euler)
     
 
+
+#Code to export the gltf file
+
+#Replace the filepath with the location of the exported file
+file_loc = gltf_file[0:-5]+'_hanger'
+bpy.ops.export_scene.gltf(filepath=file_loc, export_format ='GLTF_EMBEDDED',)
+
+
    
     
     C:\Program Files\Blender Foundation\Blender 3.4>blender -b D:\IXRVP\Folding_Template-Hanging.blend -P D:\blendscript\code.txt D:\GLTFVERTICAL\ShirtY.gltf
@@ -70,5 +78,5 @@ Read blend: D:\IXRVP\Folding_Template-Hanging.blend
 Error   : EXCEPTION_ACCESS_VIOLATION
 Address : 0x00007FF7B22A757A
 Module  : blender.exe
-Thread  : 00000f40
+Thread  : 000043b8
 Writing: C:\Users\abhinay.kumar04\AppData\Local\Temp\Folding_Template-Hanging.crash.txt
