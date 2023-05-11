@@ -1,9 +1,10 @@
-C:\Program Files\Blender Foundation\Blender 3.4>blender -b D:\IXRVP\Folding_Template-Hanging.blend -P D:\blendscript\code.txt D:\GLTFVERTICAL\ShirtY.gltf
-Blender 3.4.1 (hash 55485cb379f7 built 2022-12-20 01:51:19)
-Read prefs: C:\Users\abhinay.kumar04\AppData\Roaming\Blender Foundation\Blender\3.4\config\userpref.blend
-Read blend: D:\IXRVP\Folding_Template-Hanging.blend
-Error   : EXCEPTION_ACCESS_VIOLATION
-Address : 0x00007FF7D732757A
-Module  : blender.exe
-Thread  : 00002970
-Writing: C:\Users\abhinay.kumar04\AppData\Local\Temp\Folding_Template-Hanging.crash.txt
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.23s
+hanger <Vector (-0.0365, 0.2204, 3.2612)> <Vector (2.9435, 2.9435, 2.9435)> <Euler (x=1.5708, y=-0.0000, z=0.0000), order='XYZ'>
+shirt <Vector (-0.0365, 0.2204, 0.0000)> <Vector (2.9435, 2.9435, 2.9435)> <Euler (x=1.5708, y=-0.0000, z=0.0000), order='XYZ'>
+Error: Please select a file
+Error: Python: Traceback (most recent call last):
+  File "\Text", line 35, in <module>
+  File "C:\Program Files\Blender Foundation\Blender 3.4\3.4\scripts\modules\bpy\ops.py", line 113, in __call__
+    ret = _op_call(self.idname_py(), None, kw)
+RuntimeError: Error: Please select a file
