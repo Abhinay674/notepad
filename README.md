@@ -1,7 +1,7 @@
 import bpy
 
 
-blender_file = 'D:\IXRVP\Mannequin_Template.blend'
+blender_file = 'D:\blendblendfile\Mannequin_Template.blend'
 gltf_file = 'D:\GLTFVERTICAL\blackred.gltf'
 #gltf_file = 'D:\GLTFVERTICAL\frontblack.gltf'
 
@@ -65,4 +65,20 @@ for obj in data_to.objects:
     
     Error: Python: Traceback (most recent call last):
   File "\Text", line 13, in <module>
-OSError: load: D:\IXRVP\Mannequin_Template.blend failed to open blend file
+OSError: load: C:\Dlendblendfile\Mannequin_Template.blend failed to open blend file
+
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+GPUTexture: Texture allocation failed.Error: Region could not be drawn!
