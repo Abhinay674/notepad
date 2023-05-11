@@ -82,3 +82,6 @@ GPUTexture: Texture allocation failed.Error: Region could not be drawn!
 GPUTexture: Texture allocation failed.Error: Region could not be drawn!
 GPUTexture: Texture allocation failed.Error: Region could not be drawn!
 GPUTexture: Texture allocation failed.Error: Region could not be drawn!
+Error: Python: Traceback (most recent call last):
+  File "\Text", line 13, in <module>
+OSError: load: C:\Dlendblendfile\Mannequin_Template.blend failed to open blend file
