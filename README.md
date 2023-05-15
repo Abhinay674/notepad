@@ -47,3 +47,12 @@ bpy.ops.object.delete()
 #Replace the filepath with the location of the exported file
 file_loc2 = 'D:\GLTFVERTICAL\ShirtY_folding'
 bpy.ops.export_scene.gltf(filepath=file_loc2, export_format ='GLTF_EMBEDDED',)
+
+
+
+WARN (bke.anim): C:\Users\blender\git\blender-v340\blender.git\source\blender\blenkernel\intern\anim_path.c:68 BKE_anim_path_calc_data: No bev list data!
+Data are loaded, start creating Blender stuff
+glTF import finished in 0.23s
+Error: Python: Traceback (most recent call last):
+  File "D:\blendblendfile\Folding_Template_Shirt_with_sleeve.blend\Text", line 30, in <module>
+KeyError: 'bpy_prop_collection[key]: key "BezierCurve" not found'
