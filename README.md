@@ -1,30 +1,19 @@
-Yes, you can install Blender in any location on a Linux system. Blender is a portable application and does not have strict requirements on where it should be installed.
+<<< Start VVVV >>>
+dto ..> VVVConversionDTO [assetFileName=blackshirt.gltf, blenderFileName=Folding_Template-Hanging.blend, blenderPythonScriptFileName=Hanging - Code (Input-GLTF).txt]
+blenderExecutablePath /bin/blender
+foldingTemplatePath /opt/ixrvp/Storage/BlenderScript/
+blendFilePath /opt/ixrvp/Storage/BlenderBlendFiles/
+templateFileName Hanging - Code (Input-GLTF).txt
+blendFileName Folding_Template-Hanging.blend
+assetFileName blackshirt.gltf
+/bin/blender -b /opt/ixrvp/Storage/BlenderBlendFiles/Folding_Template-Hanging.blend -P /opt/ixrvp/Storage/BlenderScript/Hanging - Code (Input-GLTF).txt /opt/ixrvp/app/ixrvp-static-file-server/static/blackshirt.gltf
+Blender 2.82 (sub 7)
+Read blend: /opt/ixrvp/Storage/BlenderBlendFiles/Folding_Template-Hanging.blend
+Error: File written by newer Blender binary (290.0), expect loss of data!
+Error: File format is not supported in file '/opt/ixrvp/app/ixrvp-static-file-server/static/blackshirt.gltf'
+Prachi args ['/bin/blender', '-b', '/opt/ixrvp/Storage/BlenderBlendFiles/Folding_Template-Hanging.blend', '-P', '/opt/ixrvp/Storage/BlenderScript/Hanging - Code (Input-GLTF).txt', '/opt/ixrvp/app/ixrvp-static-file-server/static/blackshirt.gltf']
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa /opt/ixrvp/app/ixrvp-static-file-server/static/blackshirt.gltf
+hangerfilename /opt/ixrvp/app/ixrvp-static-file-server/static/blackshirt.gltf
+exportpath /opt/ixrvp/app/ixrvp-static-file-server/static/blackshirt_hanger.gltf
 
-To install Blender in a specific location, you can follow these general steps:
-
-1. Download the Blender installation package from the official Blender website (https://www.blender.org/download/).
-
-2. Open a terminal window and navigate to the directory where you downloaded the Blender package. For example, if it's in the "Downloads" folder, you can use the following command:
-```
-cd ~/Downloads
-```
-
-3. Extract the contents of the downloaded package using the following command:
-```
-tar -xvf blender-<version>-linux-<arch>.tar.xz
-```
-Replace `<version>` with the specific version number you downloaded, and `<arch>` with the architecture of your Linux system (e.g., `x86_64` for 64-bit).
-
-4. Move the extracted Blender folder to the desired location. You can use the `mv` command to move it to a different directory. For example, to move it to the `/opt` directory, you can use:
-```
-sudo mv blender-<version>-linux-<arch> /opt/blender
-```
-This command assumes you have administrative privileges and may ask for your password.
-
-5. Optionally, you can create a symbolic link to the Blender executable to easily run it from the command line. Run the following command to create a symbolic link in the `/usr/local/bin` directory:
-```
-sudo ln -s /opt/blender/blender /usr/local/bin/blender
-```
-This allows you to run Blender by simply typing `blender` in the terminal.
-
-After completing these steps, you should be able to run Blender by either executing the `blender` command in a terminal or by searching for it in your desktop environment's application menu.
+Blender quit
