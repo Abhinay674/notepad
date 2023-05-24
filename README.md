@@ -1,49 +1,49 @@
-loaderGLTF.load(
-  `${process.env.REACT_APP_VALIDATOR}/static/` + filename + "_" + this.state.templateTypeRadio + fileFormat,
-  gltf => {
-    console.log('start of loader');
-    var object = gltf.scene;
+#Code to import asset 
 
-    console.log("object in loader", object);
+import bpy
+from bpy_extras.io_utils import ImportHelper
+from bpy.types import Operator
+from bpy.props import StringProperty
 
-    object.rotation.y = 1.57;
-    object.updateMatrixWorld();
+meshname = ''
 
-    // Loop through each child of the glTF scene
-    object.traverse(child => {
-      if (child.isMesh) {
-        var box = new THREE.Box3().setFromObject(child);
-        var size = box.getSize().length();
-        var center = box.getCenter();
+#Replace the filepath with the filepath of the asset stored in the server
+bpy.ops.import_scene.gltf(filepath='D:\GLTFVERTICAL\greenshirt.gltf', import_pack_images=True, merge_vertices=False, guess_original_bind_pose=True,) 
 
-        child.position.x += (child.position.x - center.x);
-        child.position.y += (child.position.y - center.y);
-        child.position.z += (child.position.z - center.z);
+#Code to select the imported asset (Imported glTF file won't be selected by default in Blender)
 
-        this.controls.maxDistance = size * 1;
-        this.camera.position.copy(center);
-        this.camera.position.x += size / 2.7;
-        this.camera.position.y += size / 5.0;
-        this.camera.position.z += size / 0.80;
-        this.camera.near = size / 10;
-        this.camera.far = size * 100;
-        this.camera.updateProjectionMatrix();
-        this.camera.lookAt(center);
+objects = bpy.context.scene.objects
+for ob in bpy.data.objects:
+    if(ob.type == "MESH"):
+        meshname = ob.name
 
-        this.controls.update();
-      }
-    });
+bpy.data.objects[meshname].select_set(True)
+bpy.context.view_layer.objects.active = bpy.data.objects[meshname]
 
-    object.traverse(child => {
-      if (child.isMesh) {
-        this.scene.add(child);
-      }
-    });
+#Code to scale down the asset to required dimensions
+bpy.ops.transform.resize(value=(0.01, 0.01, 0.01), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+bpy.ops.transform.resize(value=(1, 1, 0.1), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
-    console.log('end of loader');
-  },
-  undefined,
-  error => {
-    console.error(error);
-  }
-);
+#Code to apply the guiding curves to the asset
+
+bpy.ops.object.modifier_add(type='CURVE')
+bpy.context.object.modifiers["Curve"].object = bpy.data.objects["BezierCurve"]
+bpy.ops.object.modifier_add(type='CURVE')
+bpy.context.object.modifiers["Curve.001"].object = bpy.data.objects["BezierCurve.001"]
+bpy.ops.object.modifier_add(type='CURVE')
+bpy.context.object.modifiers["Curve.002"].object = bpy.data.objects["BezierCurve.002"]
+bpy.ops.object.modifier_apply(modifier="Curve")
+bpy.ops.object.modifier_apply(modifier="Curve.001")
+bpy.ops.object.modifier_apply(modifier="Curve.002")
+
+#Code to export the gltf file
+
+objects = bpy.context.scene.objects
+for obj in objects:
+    obj.select_set(obj.type == "CURVE")
+# delete all selected objects
+bpy.ops.object.delete()
+
+#Replace the filepath with the location of the exported file
+file_loc2 = 'D:\GLTFVERTICAL\greenshirt_folding.gltf'
+bpy.ops.export_scene.gltf(filepath=file_loc2, export_format ='GLTF_EMBEDDED',)
